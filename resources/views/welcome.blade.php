@@ -26,7 +26,7 @@
                     @auth
                     <li><a href="{{ route('cart') }}">Корзина</a></li>
                     @endauth
-                    <li><a href="">Где нас найти</h5></a></li>
+                    <li><a href="{{ route('contacts') }}">Где нас найти</h5></a></li>
                     @auth
                     <li><a href="{{ route('logout') }}" class="header_button btn btn-info">Выйти</a></li>
                     @endauth
@@ -62,7 +62,7 @@
         <div class="container">
           <div class="d-flex justify-content-center align-items-center logo-footer flex-column">
             <img src="/assets/images/logo.png" alt="Logo">
-            <div class="number-footer">Номер для связи: 7 913 685-22-16</div>
+            <div class="number-footer">Номер для связи: 7 913 685-22-22</div>
           </div>
         </div>
       </footer>

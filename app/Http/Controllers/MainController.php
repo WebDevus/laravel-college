@@ -13,6 +13,11 @@ class MainController extends Controller
         return view('index');
     }
 
+    public function contacts()
+    {
+        return view('contacts');
+    }
+
     public function catalog()
     {
         $products = Product::get();

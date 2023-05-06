@@ -81,6 +81,14 @@ nav ul li {
 	margin-top: 20px;
 }
 
+#contacts {
+	margin-top: 20px;
+}
+
+.info_contact img{ 
+	height: 100px;
+	width: 100px;
+}
 
 .foto img {
 	height: 700px;
