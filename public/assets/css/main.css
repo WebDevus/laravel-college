@@ -72,9 +72,14 @@ nav ul li {
 	font-size: 20px;
 }
 
+.cart-pic-box img {
+	height: 100px !important;
+}
 
 
-
+#cart {
+	margin-top: 20px;
+}
 
 
 .foto img {

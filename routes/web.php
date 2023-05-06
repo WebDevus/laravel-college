@@ -19,7 +19,13 @@ Route::get('/', [MainController::class, 'index'])->name('index');
 Route::get('/catalog', [MainController::class, 'catalog'])->name('catalog');
 
 Route::get('/product/{product}', [MainController::class, 'product'])->name('product');
-Route::post('/cart/add/{id}', [MainController::class, 'cartAdd'])->name('addToCart');
+
+Route::get('/cart', [MainController::class, 'cart'])->name('cart');
+Route::get('/cart/add/{id}', [MainController::class, 'addToCart'])->name('addToCart');
+Route::get('/cart/remove/{id}', [MainController::class, 'removeFromCart'])->name('removeFromCart');
+Route::get('/cart/delete/{id}', [MainController::class, 'deleteFromCart'])->name('deleteFromCart');
+Route::post('/cart/next', [MainController::class, 'cartNext'])->name('cartNext');
+
 
 Route::get('/auth', [ActionsController::class, 'auth'])->name('auth');
 Route::post('/auth/next', [ActionsController::class, 'authPost'])->name('auth.post');

@@ -24,7 +24,7 @@
                   <ul class="d-flex justify-content-between flex-wrap ul-class">
                     <li><a href="{{ route('catalog') }}">Каталог</a></li>
                     @auth
-                    <li><a href="">Корзина</a></li>
+                    <li><a href="{{ route('cart') }}">Корзина</a></li>
                     @endauth
                     <li><a href="">Где нас найти</h5></a></li>
                     @auth
