@@ -22,13 +22,13 @@
             <div class="navigation">
               <nav>
                   <ul class="d-flex justify-content-between flex-wrap ul-class">
-                    <li><a href="">Каталог</a></li>
+                    <li><a href="{{ route('catalog') }}">Каталог</a></li>
                     @auth
                     <li><a href="">Корзина</a></li>
                     @endauth
                     <li><a href="">Где нас найти</h5></a></li>
                     @auth
-                    <li><a href="{{ route('logout') }}">Выйти</a></li>
+                    <li><a href="{{ route('logout') }}" class="header_button btn btn-info">Выйти</a></li>
                     @endauth
                     @guest
                       <li><a href="{{ route('auth') }}" class="header_button btn btn-info">Авторизация</a></li>
