@@ -20,9 +20,9 @@
                         </div>
                         <div class="d-flex justify-content-between align-items-center information">
                             @auth
-                            <a href="#" class="header_button btn btn-info">Купить</a>
+                            <a href="{{ route('addToCart', $product->id) }}" class="header_button btn btn-info">Купить</a>
                             @endauth
-                            <a href="#">Подробнее</a>
+                            <a href="{{ route('product', $product) }}">Подробнее</a>
                         </div>
                     </div>
                 @endforeach

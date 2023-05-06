@@ -13,6 +13,9 @@ class Product extends Model
         'name',
         'desc',
         'image',
+        'year',
+        'country',
+        'price',
         'count'
     ];
 }

@@ -60,11 +60,17 @@ nav ul li {
 	margin: 0 25px;
 }
 
+.prod-img-box img{
+	height: 150px;
+}
 
+#product {
+	margin-top: 20px;
+}
 
-
-
-
+.product-name {
+	font-size: 20px;
+}
 
 
 
