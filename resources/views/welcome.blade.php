@@ -40,6 +40,31 @@
         </div>
       </header>
 
+      <main>
+        <div class="container">
+          @if(session('success'))
+        <section id="alert">
+              <div class="text-green">{{ session('success') }}</div>
+        </section>
+        @elseif(session('error'))
+        <section id="alert">
+          <div class="text-red">{{ session('error') }}</div>
+        </section>
+        @endif
+
+        @yield('content')
+        </div>
+      </main>
+
+      <footer>
+        <div class="container">
+          <div class="d-flex justify-content-center align-items-center logo-footer flex-column">
+            <img src="/assets/images/logo.png" alt="Logo">
+            <div class="number-footer">Номер для связи: 7 913 685-22-16</div>
+          </div>
+        </div>
+      </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   </body>
 </html>

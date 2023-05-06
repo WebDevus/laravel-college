@@ -1,6 +1,31 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
 header {
    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+main {
+	flex: 1 0 auto;
+}
+
+footer {
+	flex: 0 0 auto;
+}
+
 p {
 	margin: 0;
 	padding: 0;
@@ -13,6 +38,41 @@ nav ul li {
 	display: flex;
 	align-items: center;
 }
+
+#about {
+	margin-top: 20px;
+}
+
+.logo_about img{
+	height: 100px;
+}
+
+.txt_about {
+	font-size: 20px;
+}
+
+.logo-footer img{
+	height: 100px;
+	width: 100px;
+}
+
+.number-footer {
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .foto img {
 	height: 700px;
 }
