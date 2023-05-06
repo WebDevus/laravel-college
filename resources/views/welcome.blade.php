@@ -23,14 +23,16 @@
               <nav>
                   <ul class="d-flex justify-content-between flex-wrap ul-class">
                     <li><a href="">Каталог</a></li>
+                    @auth
                     <li><a href="">Корзина</a></li>
+                    @endauth
                     <li><a href="">Где нас найти</h5></a></li>
                     @auth
-                    <li><a href="#">Выйти</a></li>
+                    <li><a href="{{ route('logout') }}">Выйти</a></li>
                     @endauth
                     @guest
                       <li><a href="#" class="header_button btn btn-info">Авторизация</a></li>
-                      <li><a href="#" class="header_button btn btn-info">Регистрация</a></li>             
+                      <li><a href="{{ route('register') }}" class="header_button btn btn-info">Регистрация</a></li>             
                     @endguest
                   </ul>
               </nav>

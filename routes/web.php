@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActionsController;
 use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,3 +16,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [MainController::class, 'index'])->name('index');
+
+Route::get('/register', [ActionsController::class, 'register'])->name('register');
+Route::post('/register/next', [ActionsController::class, 'registerPost'])->name('register.post');
+
+Route::get('/logout', [ActionsController::class, 'logout'])->name('logout');
