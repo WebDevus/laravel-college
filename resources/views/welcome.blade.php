@@ -16,7 +16,7 @@
       <div class="col-lg-12 flex-wrap container-fluid">
         <div class="row">
           <div class="d-flex justify-content-center align-items-center">
-            <div class="d-flex justify-content-center align-items-center logo">
+            <div class="d-flex justify-content-center align-items-center logo" onclick="window.location.href = '/'">
               <img src="/assets/images/logo.png">
             </div>
             <div class="navigation">
