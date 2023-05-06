@@ -31,7 +31,7 @@
                     <li><a href="{{ route('logout') }}">Выйти</a></li>
                     @endauth
                     @guest
-                      <li><a href="#" class="header_button btn btn-info">Авторизация</a></li>
+                      <li><a href="{{ route('auth') }}" class="header_button btn btn-info">Авторизация</a></li>
                       <li><a href="{{ route('register') }}" class="header_button btn btn-info">Регистрация</a></li>             
                     @endguest
                   </ul>

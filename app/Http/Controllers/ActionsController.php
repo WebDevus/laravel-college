@@ -13,6 +13,28 @@ class ActionsController extends Controller
         return view('actions.register');
     }
 
+    public function auth()
+    {
+        return view('actions.auth');
+    }
+
+    public function authPost(Request $r)
+    {
+        $login = $r->login;
+        $password = $r->password;
+
+        if(!$login) return back()->with('error', 'Вы не указали логин!');
+        if(!$password) return back()->with('error', 'Вы не указали пароль!');
+
+        $user = User::where('login', $login)->first();
+
+        if($password !== $user->password) return back()->with('error', 'Введены неправильные данные!');
+
+        auth()->login($user, true);
+
+        return redirect()->route('index');
+    }
+
     public function registerPost(Request $r)
     {
         $name = $r->name;
