@@ -52,7 +52,8 @@ class MainController extends Controller
     public function cart()
     {
         $carts = Cart::where('user_id', auth()->user()->id)->where('status', 0)->get();
-        return view('cart', compact('carts'));
+        $orders = Cart::where('user_id', auth()->user()->id)->where('status', '!=', 0)->get();
+        return view('cart', compact('carts', 'orders'));
     }
 
     public function addToCart(Request $r)
@@ -114,5 +115,12 @@ class MainController extends Controller
         }
 
         return back()->with('Ваш заказ оформлен');
+    }
+
+    public function orderDelete($id)
+    {
+        Cart::destroy($id);
+
+        return back()->with('success', 'Заказ был удалён');
     }
 }

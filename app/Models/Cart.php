@@ -17,4 +17,13 @@ class Cart extends Model
     {
         return $this->belongsTo(Product::class);
     }
+
+    public function currentStatus()
+    {
+        return [
+            1 => 'Новый',
+            2 => 'Подтвержденный',
+            3 => 'Отмененный'
+        ][$this->status];
+    }
 }

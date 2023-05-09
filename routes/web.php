@@ -27,6 +27,8 @@ Route::get('/cart/remove/{id}', [MainController::class, 'removeFromCart'])->name
 Route::get('/cart/delete/{id}', [MainController::class, 'deleteFromCart'])->name('deleteFromCart');
 Route::post('/cart/next', [MainController::class, 'cartNext'])->name('cartNext');
 
+Route::get('/cart/order/delete/{id}', [MainController::class, 'orderDelete'])->name('deleteOrder');
+
 
 Route::get('/auth', [ActionsController::class, 'auth'])->name('auth');
 Route::post('/auth/next', [ActionsController::class, 'authPost'])->name('auth.post');
