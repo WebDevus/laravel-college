@@ -28,7 +28,7 @@
                     <button type="submit" class="btn btn-success">Поиск</button>
                 </div>
             </form>
-            <div class="d-flex justify-content-between flex-wrap services mt-3">
+            <div class="d-flex justify-content-around flex-wrap services mt-3">
                 @foreach ($products as $product)
                     <div class="d-flex flex-column block">
                         <div class="d-flex justify-content-center flex-column">

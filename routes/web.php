@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ActionsController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,25 +16,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [MainController::class, 'index'])->name('index');
-Route::get('/catalog', [MainController::class, 'catalog'])->name('catalog');
-Route::get('/contacts', [MainController::class, 'contacts'])->name('contacts');
+Route::controller(MainController::class)->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/catalog', 'catalog')->name('catalog');
+    Route::get('/contacts', 'contacts')->name('contacts');
+    Route::get('/product/{product}', 'product')->name('product');
 
-Route::get('/product/{product}', [MainController::class, 'product'])->name('product');
+    Route::get('/cart', 'cart')->name('cart');
+    Route::get('/cart/add/{id}', 'addToCart')->name('addToCart');
+    Route::get('/cart/remove/{id}', 'removeFromCart')->name('removeFromCart');
+    Route::get('/cart/delete/{id}', 'deleteFromCart')->name('deleteFromCart');
+    Route::post('/cart/next', 'cartNext')->name('cartNext');    
+    Route::get('/cart/order/delete/{id}', 'orderDelete')->name('deleteOrder');
+});
 
-Route::get('/cart', [MainController::class, 'cart'])->name('cart');
-Route::get('/cart/add/{id}', [MainController::class, 'addToCart'])->name('addToCart');
-Route::get('/cart/remove/{id}', [MainController::class, 'removeFromCart'])->name('removeFromCart');
-Route::get('/cart/delete/{id}', [MainController::class, 'deleteFromCart'])->name('deleteFromCart');
-Route::post('/cart/next', [MainController::class, 'cartNext'])->name('cartNext');
+Route::controller(AdminController::class)->prefix('/admin')->group(function () {
+    Route::get('/', 'index')->name('admin.index');
+});
 
-Route::get('/cart/order/delete/{id}', [MainController::class, 'orderDelete'])->name('deleteOrder');
+Route::controller(ActionsController::class)->group(function () {
+    Route::get('/auth', 'auth')->name('auth');
+    Route::post('/auth/next', 'authPost')->name('auth.post');
+    
+    Route::get('/register', 'register')->name('register');
+    Route::post('/register/next', 'registerPost')->name('register.post');
+    
+    Route::get('/logout', 'logout')->name('logout');
+});
 
-
-Route::get('/auth', [ActionsController::class, 'auth'])->name('auth');
-Route::post('/auth/next', [ActionsController::class, 'authPost'])->name('auth.post');
-
-Route::get('/register', [ActionsController::class, 'register'])->name('register');
-Route::post('/register/next', [ActionsController::class, 'registerPost'])->name('register.post');
-
-Route::get('/logout', [ActionsController::class, 'logout'])->name('logout');

@@ -23,13 +23,21 @@
               <nav>
                   <ul class="d-flex justify-content-between flex-wrap ul-class">
                     <li><a href="{{ route('catalog') }}">Каталог</a></li>
+                    <li><a href="{{ route('contacts') }}">Где нас найти?</a></li>
+
                     @auth
                     <li><a href="{{ route('cart') }}">Корзина</a></li>
+
+                    @if(auth()->user()->login == 'admin')
+                    <li><a href="{{ route('admin.index') }}">Админка</a></li>
+                    @endif
+
                     @endauth
-                    <li><a href="{{ route('contacts') }}">Где нас найти?</a></li>
+
                     @auth
                     <li><a href="{{ route('logout') }}" class="header_button btn btn-info">Выйти</a></li>
                     @endauth
+
                     @guest
                       <li><a href="{{ route('auth') }}" class="header_button btn btn-info">Авторизация</a></li>
                       <li><a href="{{ route('register') }}" class="header_button btn btn-info">Регистрация</a></li>             

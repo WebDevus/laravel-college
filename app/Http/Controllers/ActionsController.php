@@ -54,7 +54,7 @@ class ActionsController extends Controller
             'email' => 'required|email',
             'password' => 'required',
             'password_repeat' => 'required',
-            'rules' => 'checked'
+            'rules' => 'required'
             ],
             [
             'name.required' => 'Вы не указали ФИО!',
@@ -64,7 +64,7 @@ class ActionsController extends Controller
             'email.email' => 'Формат почты указан неверно',
             'password.required' => 'Вы не указали пароль!',
             'password_repeat.required' => 'Вы не указали повтор пароля!',
-            'rules.checked' => 'Вы не указали согласие'
+            'rules.required' => 'Вы не указали согласие'
             ]
         );
 
