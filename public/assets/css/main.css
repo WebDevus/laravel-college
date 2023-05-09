@@ -94,6 +94,10 @@ nav ul li {
 	margin-top: 20px;
 }
 
+.category-action {
+	cursor: pointer;
+}
+
 .foto img {
 	height: 700px;
 }

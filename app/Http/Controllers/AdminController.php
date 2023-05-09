@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -44,5 +45,31 @@ class AdminController extends Controller
         ]);
 
         return back()->with('success', 'Заказ отменён');
+    }
+
+    public function categories()
+    {
+        $categories = Category::get();
+        return view('admin.categories', compact('categories'));
+    }
+
+    public function categoriesCreate(Request $r)
+    {
+        $name = $r->category;
+
+        if(!$name) return back()->with('error', 'Вы не указали название категории');
+
+        Category::create([
+            'name' => $name
+        ]);
+
+        return back()->with('success', 'Категория добавлена');
+    }
+
+    public function categoriesDelete($id)
+    {
+        Category::destroy($id);
+
+        return back()->with('success', 'Категория удалена');
     }
 }

@@ -34,6 +34,12 @@ Route::controller(AdminController::class)->prefix('/admin')->middleware('admin')
     Route::get('/', 'index')->name('admin.index');
     Route::get('/order/accept/{id}', 'acceptOrder')->name('admin.acceptOrder');
     Route::get('/order/cancel', 'cancelOrder')->name('admin.cancelOrder');
+
+    Route::get('/categories', 'categories')->name('admin.categories');
+    Route::post('/categories/create', 'categoriesCreate')->name('admin.categories.create');
+    Route::get('/categories/delete/{id}', 'categoriesDelete')->name('admin.categories.delete');
+
+    Route::get('/products', 'products')->name('admin.products');
 });
 
 Route::controller(ActionsController::class)->group(function () {
