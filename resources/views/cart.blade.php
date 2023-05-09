@@ -8,7 +8,7 @@
             <div class="cart-items order-md-1 order-0">
                 @foreach ($carts as $cart)
 
-                <div class="cart-item d-flex justify-content-between">
+                <div class="cart-item d-flex justify-content-between mb-2">
                     <div class="cart-pic-box">
                         <img src="/assets/images/products/{{ $cart->product->image }}" alt="">
                     </div>

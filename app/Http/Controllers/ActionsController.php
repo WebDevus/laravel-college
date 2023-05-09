@@ -44,7 +44,6 @@ class ActionsController extends Controller
         $email = $r->email;
         $password = $r->password;
         $password_repeat = $r->password_repeat;
-        $rules = $r->rules;
 
         $valid = Validator::make($r->all(),
             [

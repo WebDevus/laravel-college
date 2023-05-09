@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
@@ -71,5 +73,135 @@ class AdminController extends Controller
         Category::destroy($id);
 
         return back()->with('success', 'Категория удалена');
+    }
+
+    public function products()
+    {
+        $products = Product::get();
+        $categories = Category::get();
+        return view('admin.products', compact('products', 'categories'));
+    }
+
+    public function product(Product $product)
+    {
+        $categories = Category::get();
+        return view('admin.product', compact('product', 'categories'));
+    }
+
+    public function productEdit(Product $product, Request $r)
+    {
+        $valid = Validator::make($r->all(),
+            [
+            'name' => 'required',
+            'desc' => 'required',
+            'year' => 'required',
+            'country' => 'required',
+            'price' => 'required',
+            'count' => 'required',
+            'category_id' => 'required'
+            ],
+            [
+            'name.required' => 'Вы не указали название товара',
+            'desc.required' => 'Вы не указали описание товара',
+            'year.required' => 'Вы не указали год выпуска товара',
+            'country.required' => 'Вы не указали страну выпуска товара',
+            'price.required' => 'Вы не указали цену товара',
+            'count.required' => 'Вы не указали кол-во товара',
+            'category_id.required' => 'Вы не указали категорию товара'
+            ]
+        );
+
+        $errors = $valid->errors();
+
+        if ($valid->fails()) {
+            return back()->with('error', $errors->first());
+        }
+
+        $product->update([
+            'name' => $r->name,
+            'desc' => $r->desc,
+            'year' => $r->year,
+            'country' => $r->country,
+            'price' => $r->price,
+            'count' => $r->count,
+            'category_id' => $r->category_id,
+        ]);
+
+        if($r->file('image')){
+            $old = public_path().'/assets/images/products/'.$product->image;
+            if($old) {
+                unlink($old);
+            }
+
+            $imageName = $r->file('image')->getClientOriginalName();
+            $r->file('image')->move(public_path('assets/images/products'), $imageName);
+            $product->update([
+                'image' => $imageName
+            ]);
+        }
+
+        return to_route('admin.products')->with('success', 'Товар отредактирован');
+    }
+
+    public function productNew(Request $r)
+    {
+        $valid = Validator::make($r->all(),
+            [
+            'name' => 'required',
+            'desc' => 'required',
+            'year' => 'required',
+            'country' => 'required',
+            'price' => 'required',
+            'count' => 'required',
+            'category_id' => 'required',
+            'image' => 'required'
+            ],
+            [
+            'name.required' => 'Вы не указали название товара',
+            'desc.required' => 'Вы не указали описание товара',
+            'year.required' => 'Вы не указали год выпуска товара',
+            'country.required' => 'Вы не указали страну выпуска товара',
+            'price.required' => 'Вы не указали цену товара',
+            'count.required' => 'Вы не указали кол-во товара',
+            'category_id.required' => 'Вы не указали категорию товара'
+            ]
+        );
+
+        $errors = $valid->errors();
+
+        if ($valid->fails()) {
+            return back()->with('error', $errors->first());
+        }
+
+        $imageName = $r->file('image')->getClientOriginalName();
+        $r->file('image')->move(public_path('assets/images/products'), $imageName);
+
+        Product::create([
+            'name' => $r->name,
+            'desc' => $r->desc,
+            'image' => $imageName,
+            'year' => $r->year,
+            'country' => $r->country,
+            'price' => $r->price,
+            'count' => $r->count,
+            'category_id' => $r->category_id
+        ]);
+
+        return back()->with('success', 'Товар добавлен');
+    }
+
+    public function productDelete(Product $product)
+    {
+        $old = public_path('assets/images/products/'.$product->image);
+        if($old) {
+            unlink($old);
+        }
+
+        foreach(Cart::where('product_id', $product->id)->get() as $item) {
+            $item->delete();
+        }
+        
+        $product->delete();
+        return back()->with('success', 'Товар удалён');
     }
 }

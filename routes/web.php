@@ -40,6 +40,10 @@ Route::controller(AdminController::class)->prefix('/admin')->middleware('admin')
     Route::get('/categories/delete/{id}', 'categoriesDelete')->name('admin.categories.delete');
 
     Route::get('/products', 'products')->name('admin.products');
+    Route::post('/product/new', 'productNew')->name('productNew');
+    Route::get('/product/delete/{product}', 'productDelete')->name('admin.products.delete');
+    Route::get('/product/{product}', 'product')->name('admin.products.show');
+    Route::post('/product/{product}/edit', 'productEdit')->name('admin.products.edit');
 });
 
 Route::controller(ActionsController::class)->group(function () {
