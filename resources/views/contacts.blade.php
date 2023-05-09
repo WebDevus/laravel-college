@@ -4,9 +4,9 @@
     <div class="title_contact text-center">
         <h1>Где нас найти</h1>
     </div>
-    <div class="section_contact d-flex">
+    <div class="section_contact d-flex justify-content-between flex-wrap">
         <div class="map_section ">
-            <img src="/public/map.png" alt="">
+            <img src="/assets/images/map.jpg" alt="">
         </div>
         <div class="info_contact d-flex justify-content-center flex-column">
             <h2>Адрес: Комарова 13</h2>
