@@ -25,4 +25,9 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public function getFIO()
+    {
+        return $this->surname . ' ' . $this->name .' ' . $this->patronymic;
+    }
 }

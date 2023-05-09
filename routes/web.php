@@ -30,8 +30,10 @@ Route::controller(MainController::class)->group(function () {
     Route::get('/cart/order/delete/{id}', 'orderDelete')->name('deleteOrder');
 });
 
-Route::controller(AdminController::class)->prefix('/admin')->group(function () {
+Route::controller(AdminController::class)->prefix('/admin')->middleware('admin')->group(function () {
     Route::get('/', 'index')->name('admin.index');
+    Route::get('/order/accept/{id}', 'acceptOrder')->name('admin.acceptOrder');
+    Route::get('/order/cancel', 'cancelOrder')->name('admin.cancelOrder');
 });
 
 Route::controller(ActionsController::class)->group(function () {

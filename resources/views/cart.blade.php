@@ -52,7 +52,7 @@
                 </div>
                 <div class="text-box d-flex justify-content-center align-items-center flex-column" >
                     <p class="card-title mb-0 me-2 fw-bold">{{ $order->product->name }}</p>
-                    <p class="price me-2">Итог: {{ $order->product->price * $cart->count }} руб</p>
+                    <p class="price me-2">Итог: {{ $order->product->price * $order->count }} руб</p>
                     <p class="count me-2">Штук: {{ $order->count }}</p>
                     <p class="status">Статус: {{ $order->currentStatus() }}</p>
                 </div>

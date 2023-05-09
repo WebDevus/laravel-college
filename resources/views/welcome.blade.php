@@ -52,6 +52,7 @@
 
       <main>
         <div class="container">
+
           @if(session('success'))
         <section id="alert">
               <div class="text-green">{{ session('success') }}</div>
