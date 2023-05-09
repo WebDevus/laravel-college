@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -18,10 +19,29 @@ class MainController extends Controller
         return view('contacts');
     }
 
-    public function catalog()
+    public function catalog(Request $r)
     {
-        $products = Product::get();
-        return view('catalog', compact('products'));
+        $categories = Category::get();
+
+        $year = $r->year;
+        $name = $r->name;
+        $category = $r->category;
+
+        $query = Product::query();
+
+        $query->when($year, function ($query) use ($r) {
+            $query->where('year', $r->year);
+        })
+        ->when($name, function($query) use ($r) {
+            $query->where('name', 'LIKE', '%'.$r->name.'%');
+        })
+        ->when($category, function($query) use ($r) {
+            $query->where('category_id', $r->category);
+        });
+
+        $products = $query->get();
+
+        return view('catalog', compact('products', 'categories'));
     }
 
     public function product(Product $product)
