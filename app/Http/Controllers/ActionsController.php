@@ -44,6 +44,7 @@ class ActionsController extends Controller
         $email = $r->email;
         $password = $r->password;
         $password_repeat = $r->password_repeat;
+        $rules = $r->rules;
 
         $valid = Validator::make($r->all(),
             [
@@ -52,7 +53,8 @@ class ActionsController extends Controller
             'login' => 'required',
             'email' => 'required|email',
             'password' => 'required',
-            'password_repeat' => 'required'
+            'password_repeat' => 'required',
+            'rules' => 'checked'
             ],
             [
             'name.required' => 'Вы не указали ФИО!',
@@ -61,7 +63,8 @@ class ActionsController extends Controller
             'email.required' => 'Вы не указали Email!',
             'email.email' => 'Формат почты указан неверно',
             'password.required' => 'Вы не указали пароль!',
-            'password_repeat.required' => 'Вы не указали повтор пароля!'
+            'password_repeat.required' => 'Вы не указали повтор пароля!',
+            'rules.checked' => 'Вы не указали согласие'
             ]
         );
 

@@ -44,6 +44,11 @@
                 <label class="form-label">Повтор пароля</label>
                 <input type="password" name="password_repeat" class="form-control form-control-lg" />
               </div>
+
+              <div class="form-outline mb-4">
+                <label class="form-label">Согласие с правилами регистрации</label>
+                <input type="checkbox" name="rules" />
+              </div>
   
               <button class="btn btn-primary btn-lg btn-block" type="submit">Регистрация</button>
             </div>

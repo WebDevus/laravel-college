@@ -26,7 +26,7 @@
                     @auth
                     <li><a href="{{ route('cart') }}">Корзина</a></li>
                     @endauth
-                    <li><a href="{{ route('contacts') }}">Где нас найти</h5></a></li>
+                    <li><a href="{{ route('contacts') }}">Где нас найти?</a></li>
                     @auth
                     <li><a href="{{ route('logout') }}" class="header_button btn btn-info">Выйти</a></li>
                     @endauth
