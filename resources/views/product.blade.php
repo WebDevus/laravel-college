@@ -10,7 +10,7 @@
                     <h1 class="product-name">{{ $product->name }}</h1>
                         <div class="sell-box d-flex align-items-center">
                         @if (auth()->user())
-                            <a href="{{ route('addToCart', $product->id) }}" class="header_button btn btn-info me-2">Купить</a>
+                            <a href="#" id="addToCartButton" data-product="{{ $product->id }}" class="header_button btn btn-info me-2">Купить</a>
                         @endif
                         <p class="price">{{ $product->price }} руб.</p>
                     </div>
