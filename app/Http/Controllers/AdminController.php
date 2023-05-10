@@ -102,13 +102,13 @@ class AdminController extends Controller
             'category_id' => 'required'
             ],
             [
-            'name.required' => 'Вы не указали название товара',
-            'desc.required' => 'Вы не указали описание товара',
-            'year.required' => 'Вы не указали год выпуска товара',
-            'country.required' => 'Вы не указали страну выпуска товара',
-            'price.required' => 'Вы не указали цену товара',
-            'count.required' => 'Вы не указали кол-во товара',
-            'category_id.required' => 'Вы не указали категорию товара'
+            'name.required' => __('translate.products.name'),
+            'desc.required' => __('translate.products.desc'),
+            'year.required' => __('translate.products.year'),
+            'country.required' => __('translate.products.country'),
+            'price.required' => __('translate.products.price'),
+            'count.required' => __('translate.products.count'),
+            'category_id.required' => __('translate.products.category_id'),
             ]
         );
 
@@ -158,13 +158,13 @@ class AdminController extends Controller
             'image' => 'required'
             ],
             [
-            'name.required' => 'Вы не указали название товара',
-            'desc.required' => 'Вы не указали описание товара',
-            'year.required' => 'Вы не указали год выпуска товара',
-            'country.required' => 'Вы не указали страну выпуска товара',
-            'price.required' => 'Вы не указали цену товара',
-            'count.required' => 'Вы не указали кол-во товара',
-            'category_id.required' => 'Вы не указали категорию товара'
+            'name.required' => __('translate.products.name'),
+            'desc.required' => __('translate.products.desc'),
+            'year.required' => __('translate.products.year'),
+            'country.required' => __('translate.products.country'),
+            'price.required' => __('translate.products.price'),
+            'count.required' => __('translate.products.count'),
+            'category_id.required' => __('translate.products.category_id')
             ]
         );
 
