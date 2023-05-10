@@ -57,14 +57,14 @@ class ActionsController extends Controller
             'rules' => 'required'
             ],
             [
-            'name.required' => 'Вы не указали ФИО!',
-            'surname.required' => 'Вы не указали ФИО!',
-            'login.required' => 'Вы не указали логин!',
-            'email.required' => 'Вы не указали Email!',
-            'email.email' => 'Формат почты указан неверно',
-            'password.required' => 'Вы не указали пароль!',
-            'password_repeat.required' => 'Вы не указали повтор пароля!',
-            'rules.required' => 'Вы не указали согласие'
+            'name.required' => __('translate.validation.name'),
+            'surname.required' => __('translate.validation.surname'),
+            'login.required' => __('translate.validation.login'),
+            'email.required' => __('translate.validation.email'),
+            'email.email' => __('translate.validation.emailNotEmail'),
+            'password.required' => __('translate.validation.password'),
+            'password_repeat.required' => __('translate.validation.passwordRepeat'),
+            'rules.required' => __('translate.validation.rules')
             ]
         );
 
