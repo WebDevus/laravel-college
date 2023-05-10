@@ -19,4 +19,31 @@ class Product extends Model
         'price',
         'count'
     ];
+
+    public function scopeName($query, $name)
+    {
+        if (!is_null($name)) {
+            return $query->where('name', 'like', '%'.$name.'%');
+        }
+
+        return $query;
+    }
+
+    public function scopeYear($query, $year)
+    {
+        if (!is_null($year)) {
+            return $query->where('year', $year);
+        }
+
+        return $query;
+    }
+
+    public function scopeCategory($query, $category)
+    {
+        if (!is_null($category)) {
+            return $query->where('category_id', $category);
+        }
+
+        return $query;
+    }
 }
