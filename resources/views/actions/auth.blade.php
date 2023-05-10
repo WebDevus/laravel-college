@@ -21,7 +21,7 @@
                 <input type="password" name="password" class="form-control form-control-lg" />
               </div>
   
-              <button class="btn btn-primary btn-lg btn-block" type="submit">Регистрация</button>
+              <button class="btn btn-primary btn-lg btn-block" type="submit">Войти</button>
             </div>
           </div>
         </div>

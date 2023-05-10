@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class ActionsController extends Controller
@@ -28,7 +29,7 @@ class ActionsController extends Controller
 
         $user = User::where('login', $login)->first();
 
-        if($password !== $user->password) return back()->with('error', 'Введены неправильные данные!');
+        if(Hash::check(Hash::make($password), $user->password)) return back()->with('error', 'Введены неправильные данные!');
 
         auth()->login($user, true);
 
@@ -76,7 +77,7 @@ class ActionsController extends Controller
         $user = User::where('login', $login)->orWhere('email', $email)->first();
 
         if($user) return back()->with('error', 'Пользователь с таким логином или почтой уже существует!');
-        if($password_repeat !== $password) return back()->with('error', 'Введённый повтор пароля не совпадает с паролем!');
+        if($password_repeat != $password) return back()->with('error', 'Введённый повтор пароля не совпадает с паролем!');
 
         $user = User::create([
             'name' => $name,
@@ -84,7 +85,7 @@ class ActionsController extends Controller
             'patronymic' => $patronymic,
             'login' => $login,
             'email' => $email,
-            'password' => $password
+            'password' => Hash::make($password)
         ]);
 
         auth()->login($user, true);
