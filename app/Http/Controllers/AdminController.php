@@ -6,6 +6,7 @@ use App\Models\Cart;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
@@ -128,13 +129,13 @@ class AdminController extends Controller
         ]);
 
         if($r->file('image')){
-            $old = public_path().'/assets/images/products/'.$product->image;
+            $old = Config::get('filesystems.disks.publicImages.url').'/'.$product->image;
             if($old) {
                 unlink($old);
             }
 
             $imageName = $r->file('image')->getClientOriginalName();
-            $r->file('image')->move(public_path('assets/images/products'), $imageName);
+            $r->file('image')->move(Config::get('filesystems.disks.publicImages.url'), $imageName);
             $product->update([
                 'image' => $imageName
             ]);
@@ -174,7 +175,7 @@ class AdminController extends Controller
         }
 
         $imageName = $r->file('image')->getClientOriginalName();
-        $r->file('image')->move(public_path('assets/images/products'), $imageName);
+        $r->file('image')->move(Config::get('filesystems.disks.publicImages.url'), $imageName);
 
         Product::create([
             'name' => $r->name,
@@ -192,7 +193,7 @@ class AdminController extends Controller
 
     public function productDelete(Product $product)
     {
-        $old = public_path('assets/images/products/'.$product->image);
+        $old = Config::get('filesystems.disks.publicImages.url').'/'.$product->image;
         if($old) {
             unlink($old);
         }

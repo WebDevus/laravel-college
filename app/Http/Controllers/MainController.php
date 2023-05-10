@@ -43,18 +43,6 @@ class MainController extends Controller
             $query->where('category_id', $category);
         }
 
-        // $products = Product::name($name)->year($year)->category($category)->get();
-
-        // $query->when($year, function ($query) use ($r) {
-        //     $query->where('year', $r->year);
-        // })
-        // ->when($name, function($query) use ($r) {
-        //     $query->where('name', 'LIKE', '%'.$r->name.'%');
-        // })
-        // ->when($category, function($query) use ($r) {
-        //     $query->where('category_id', $r->category);
-        // });
-
         $products = $query->get();
 
         return view('catalog', compact('products', 'categories'));

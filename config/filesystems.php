@@ -56,6 +56,10 @@ return [
             'throw' => false,
         ],
 
+        'publicImages' => [
+            'url' => public_path('assets/images/products')
+        ],
+
     ],
 
     /*
