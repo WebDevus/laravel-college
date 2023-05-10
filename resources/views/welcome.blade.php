@@ -9,6 +9,7 @@
     <link href="/assets/css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/main.css">
     <title>Магазин Сантехники</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
   </head>
   <body>
 
@@ -52,14 +53,14 @@
 
       <main>
         <div class="container">
-
+          <p id="errorResponse" class="text-red"></p>
           @if(session('success'))
         <section id="alert">
-              <div class="text-green">{{ session('success') }}</div>
+              <div class="text-green" id="successResponse">{{ session('success') }}</div>
         </section>
         @elseif(session('error'))
         <section id="alert">
-          <div class="text-red">{{ session('error') }}</div>
+          <div class="text-red" id="errorResponse">{{ session('error') }}</div>
         </section>
         @endif
 
@@ -76,6 +77,8 @@
         </div>
       </footer>
 
+      <script src="/assets/js/jquery.js"></script>
+      <script src="/assets/js/main.js"></script>
     <script src="/assets/js/bootstrap.js"></script>
   </body>
 </html>

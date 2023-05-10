@@ -8,12 +8,16 @@
             </div>
             <form method="GET" action="#" class="d-flex align-items-end">
                 <div class="form-group-custom col-lg-2 me-4">
-                    <label class="form-label">Год производства</label>
-                    <input type="text" name="year" placeholder="Например: 2020" class="form-control" value="{{ request()->year }}">
-                </div>
-                <div class="form-group-custom col-lg-3 me-4">
-                    <label class="form-label">Название товара</label>
-                    <input type="text" name="name" placeholder="Например: Колено" class="form-control" value="{{ request()->name }}">
+                    <label class="form-label">Упорядочить по</label>
+                    <select name="sort" class="form-control">
+                        <option value="">Выбрать...</option>
+                        <option value="yearDESC" {{ request()->sort == 'yearDESC' ? 'selected' : '' }}>По году производства (Новое - старое)</option>
+                        <option value="yearASC" {{ request()->sort == 'yearASC' ? 'selected' : '' }}>По году производства (Старое - новое)</option>
+                        <option value="nameASC" {{ request()->sort == 'nameASC' ? 'selected' : '' }}>По наименованию (А-я)</option>
+                        <option value="nameDESC" {{ request()->sort == 'nameDESC' ? 'selected' : '' }}>По наименованию (Я-а)</option>
+                        <option value="priceASC" {{ request()->sort == 'priceASC' ? 'selected' : '' }}>По цене (Дешевле - дороже)</option>
+                        <option value="priceDESC" {{ request()->sort == 'priceDESC' ? 'selected' : '' }}>По цене (Дороже - дешевле)</option>
+                    </select>
                 </div>
                 <div class="form-group-custom col-lg-3 me-2">
                     <label class="form-label">Категория товара</label>
@@ -25,7 +29,7 @@
                     </select>
                 </div>
                 <div class="form-group-custom col-lg-3">
-                    <button type="submit" class="btn btn-success">Поиск</button>
+                    <button type="submit" class="btn btn-success">Фильтровать</button>
                 </div>
             </form>
             <div class="d-flex justify-content-around flex-wrap services mt-3">
@@ -42,12 +46,16 @@
                         </div>
                         <div class="d-flex justify-content-between align-items-center information">
                             @auth
-                            <a href="{{ route('addToCart', $product->id) }}" class="header_button btn btn-info">Купить</a>
+                            <a href="#" id="addToCartButton" data-product="{{ $product->id }}" class="header_button btn btn-info">Купить</a>
                             @endauth
                             <a href="{{ route('product', $product) }}">Подробнее</a>
                         </div>
                     </div>
                 @endforeach
+
+                @if(count($products) < 1)
+                    <p>Товаров нет</p>
+                @endif
             </div>
         </div>
     </div>

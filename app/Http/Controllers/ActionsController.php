@@ -29,7 +29,11 @@ class ActionsController extends Controller
 
         $user = User::where('login', $login)->first();
 
-        if(Hash::check(Hash::make($password), $user->password)) return back()->with('error', 'Введены неправильные данные!');
+        if(!$user) {
+            return back()->with('error', 'Пользователь не найден');
+        }
+
+        if(!Hash::check($password, $user->password)) return back()->with('error', 'Введены неправильные данные!');
 
         auth()->login($user, true);
 
@@ -71,13 +75,27 @@ class ActionsController extends Controller
         $errors = $valid->errors();
 
         if ($valid->fails()) {
-            return back()->with('error', $errors->first());
+            return response()->json([
+                'success' => false,
+                'message' => $errors->first()
+            ]);
         }
 
         $user = User::where('login', $login)->orWhere('email', $email)->first();
 
-        if($user) return back()->with('error', 'Пользователь с таким логином или почтой уже существует!');
-        if($password_repeat != $password) return back()->with('error', 'Введённый повтор пароля не совпадает с паролем!');
+        if($user)  {
+            return response()->json([
+                'success' => false,
+                'message' => 'Пользователь с таким логином или почтой уже существует!'
+            ]);
+        }
+
+        if($password_repeat != $password) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Введённый повтор пароля не совпадает с паролем!'
+            ]);
+        }
 
         $user = User::create([
             'name' => $name,
@@ -90,7 +108,10 @@ class ActionsController extends Controller
 
         auth()->login($user, true);
 
-        return redirect()->route('index');
+        return response()->json([
+            'success' => true,
+            'message' => 'Регистрация прошла успешно'
+        ]);
     }
 
     public function logout()

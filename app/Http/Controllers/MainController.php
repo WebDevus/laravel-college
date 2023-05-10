@@ -6,6 +6,7 @@ use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class MainController extends Controller
 {
@@ -27,23 +28,39 @@ class MainController extends Controller
         $name = $r->name;
         $category = $r->category;
 
-        // dd($r->year);
-
         $query = Product::query();
-
-        if(!is_null($year)) {
-            $query->where('year', $year);
-        }
-
-        if(!is_null($name)) {
-            $query->where('name', 'LIKE', '%'.$name.'%');
-        }
 
         if(!is_null($category)) {
             $query->where('category_id', $category);
         }
 
-        $products = $query->get();
+        if(!is_null($r->sort)) {
+            if($r->sort == 'yearASC') {
+                $query->orderBy('year', 'asc');
+            }
+
+            if($r->sort == 'yearDESC') {
+                $query->orderBy('year', 'desc');
+            }
+
+            if($r->sort == 'nameASC') {
+                $query->orderBy('name', 'asc');
+            }
+
+            if($r->sort == 'nameDESC') {
+                $query->orderBy('name', 'desc');
+            }
+
+            if($r->sort == 'priceASC') {
+                $query->orderBy('price', 'asc');
+            }
+
+            if($r->sort == 'priceDESC') {
+                $query->orderBy('price', 'desc');
+            }
+        }
+
+        $products = $query->where('count', '!=', 0)->get();
 
         return view('catalog', compact('products', 'categories'));
     }
@@ -55,7 +72,7 @@ class MainController extends Controller
     
     public function cart()
     {
-        $carts = Cart::where('user_id', auth()->user()->id)->where('status', 0)->get();
+        $carts = Cart::where('user_id', auth()->user()->id)->where('status', 0)->orderBy('id', 'desc')->get();
         $orders = Cart::where('user_id', auth()->user()->id)->where('status', '!=', 0)->get();
         return view('cart', compact('carts', 'orders'));
     }
@@ -68,11 +85,20 @@ class MainController extends Controller
         $cart = Cart::where('user_id', auth()->user()->id)->where('product_id', $product)->where('status', '<=', 0)->first();
 
         if($cart) {
-            if($cart->count > $productFind->count) return back()->with('error', 'Нет такого количества');
+            if($cart->count >= $productFind->count) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Нет такого количества'
+                ]);
+            };
+
             $cart->increment('count', 1);
             $cart->update();
 
-            return back()->with('success', 'Товар добавлен в корзину');
+            return response()->json([
+                'success' => true,
+                'message' => 'Товар добавлен в корзину'
+            ]);
         }
 
         if(!$cart) {
@@ -81,7 +107,10 @@ class MainController extends Controller
                 'user_id' => auth()->user()->id,
                 'count' => 1
             ]);
-            return back()->with('success', 'Товар добавлен в корзину');
+            return response()->json([
+                'success' => true,
+                'message' => 'Товар добавлен в корзину'
+            ]);
         }
     }
 
@@ -109,7 +138,12 @@ class MainController extends Controller
     {
         $password = $r->password;
 
-        if(auth()->user()->password != $password) return back()->with('error', 'Вы указали неверный пароль');
+        if(!Hash::check($password, auth()->user()->password)) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Вы указали неверный пароль'
+            ]);
+        };
 
         $cart = Cart::where('user_id', auth()->user()->id)->get();
 
@@ -118,7 +152,10 @@ class MainController extends Controller
             $c->update();
         }
 
-        return back()->with('Ваш заказ оформлен');
+        return response()->json([
+            'success' => true,
+            'message' => 'Заказ был оформлен'
+        ]);
     }
 
     public function orderDelete($id)

@@ -28,11 +28,10 @@
         </div>
 
         @if($carts->count() >= 1)
-        <form action="{{ route('cartNext') }}" method="post" class="d-flex flex-column">
-            @csrf
+        <form action="#" method="post" class="d-flex flex-column" id="cartNextForm">
             <div class="form-title">Оформление заказа</div>
             <input type="password" placeholder="Ваш пароль" class="form-control" name="password">
-            <button type="submit" class="btn btn-success mt-2">Оформить</button>
+            <button type="button" id="cartSubmitButton" class="btn btn-success mt-2">Оформить</button>
         </form>
         @endif
 </section>
@@ -55,9 +54,12 @@
                     <p class="price me-2">Итог: {{ $order->product->price * $order->count }} руб</p>
                     <p class="count me-2">Штук: {{ $order->count }}</p>
                     <p class="status">Статус: {{ $order->currentStatus() }}</p>
+                    @if(!is_null($order->reason))
+                    <p class="status">Причина отказа: {{ $order->reason }}</p>
+                    @endif
                 </div>
                 @if($order->status <= 1)
-                <a href="{{ route('deleteOrder', $cart->id) }}" class="header_button btn btn-info d-flex align-items-center">Удалить</a>
+                <a href="{{ route('deleteOrder', $order->id) }}" class="header_button btn btn-info d-flex align-items-center">Удалить</a>
                 @endif
             </div>
             @endforeach

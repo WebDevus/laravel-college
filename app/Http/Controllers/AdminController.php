@@ -29,7 +29,8 @@ class AdminController extends Controller
         $order = Cart::find($id);
 
         $order->update([
-            'status' => 2
+            'status' => 2,
+            'reason' => null
         ]);
 
         return back()->with('success', 'Заказ подтвёрждён');
