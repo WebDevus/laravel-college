@@ -11,12 +11,12 @@
               <h3 class="mb-5">Регистрация</h3>
   
               <div class="form-outline mb-4">
-                <label class="form-label">Name</label>
+                <label class="form-label">Name *</label>
                 <input type="text" name="name" class="form-control form-control-lg" />
               </div>
   
               <div class="form-outline mb-4">
-                <label class="form-label">Surname</label>
+                <label class="form-label">Surname *</label>
                 <input type="text" name="surname" class="form-control form-control-lg" />
               </div>
 
@@ -26,22 +26,22 @@
               </div>
 
               <div class="form-outline mb-4">
-                <label class="form-label">Login</label>
+                <label class="form-label">Login *</label>
                 <input type="text" name="login" class="form-control form-control-lg" />
               </div>
 
               <div class="form-outline mb-4">
-                <label class="form-label">Email</label>
+                <label class="form-label">Email *</label>
                 <input type="email" name="email" class="form-control form-control-lg" />
               </div>
 
               <div class="form-outline mb-4">
-                <label class="form-label">Пароль</label>
+                <label class="form-label">Пароль *</label>
                 <input type="password" name="password" class="form-control form-control-lg" />
               </div>
 
               <div class="form-outline mb-4">
-                <label class="form-label">Повтор пароля</label>
+                <label class="form-label">Повтор пароля *</label>
                 <input type="password" name="password_repeat" class="form-control form-control-lg" />
               </div>
 
