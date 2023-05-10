@@ -27,9 +27,23 @@ class MainController extends Controller
         $name = $r->name;
         $category = $r->category;
 
-        // $query = Product::query();
+        // dd($r->year);
 
-        $products = Product::name($name)->year($year)->category($category)->get();
+        $query = Product::query();
+
+        if(!is_null($year)) {
+            $query->where('year', $year);
+        }
+
+        if(!is_null($name)) {
+            $query->where('name', 'LIKE', '%'.$name.'%');
+        }
+
+        if(!is_null($category)) {
+            $query->where('category_id', $category);
+        }
+
+        // $products = Product::name($name)->year($year)->category($category)->get();
 
         // $query->when($year, function ($query) use ($r) {
         //     $query->where('year', $r->year);
@@ -41,7 +55,7 @@ class MainController extends Controller
         //     $query->where('category_id', $r->category);
         // });
 
-        // $products = $query;
+        $products = $query->get();
 
         return view('catalog', compact('products', 'categories'));
     }
