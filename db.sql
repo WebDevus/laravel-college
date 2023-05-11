@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost
--- Время создания: Май 09 2023 г., 10:44
+-- Время создания: Май 11 2023 г., 02:06
 -- Версия сервера: 8.0.28
 -- Версия PHP: 8.1.1
 
@@ -38,16 +38,6 @@ CREATE TABLE `carts` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
---
--- Дамп данных таблицы `carts`
---
-
-INSERT INTO `carts` (`id`, `product_id`, `user_id`, `count`, `status`, `reason`, `created_at`, `updated_at`) VALUES
-(3, 1, 1, 1, 3, 'Причина', '2023-05-05 23:29:21', '2023-05-09 03:14:59'),
-(4, 1, 1, 1, 0, NULL, '2023-05-05 23:39:59', '2023-05-05 23:39:59'),
-(5, 1, 2, 1, 0, NULL, '2023-05-09 01:59:23', '2023-05-09 01:59:23'),
-(6, 2, 2, 1, 0, NULL, '2023-05-09 04:38:38', '2023-05-09 04:38:38');
-
 -- --------------------------------------------------------
 
 --
@@ -67,7 +57,8 @@ CREATE TABLE `categories` (
 
 INSERT INTO `categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (1, 'Унитазы', '2023-05-09 05:21:06', '2023-05-09 05:21:06'),
-(2, 'Раковины', '2023-05-09 05:21:19', '2023-05-09 05:21:19');
+(2, 'Раковины', '2023-05-09 05:21:19', '2023-05-09 05:21:19'),
+(4, 'Ванна', '2023-05-10 03:02:07', '2023-05-10 03:02:07');
 
 -- --------------------------------------------------------
 
@@ -151,6 +142,7 @@ CREATE TABLE `products` (
   `image` varchar(255) NOT NULL,
   `year` int NOT NULL,
   `country` varchar(255) NOT NULL,
+  `model` varchar(255) NOT NULL,
   `price` int NOT NULL,
   `count` int NOT NULL,
   `category_id` int NOT NULL,
@@ -162,9 +154,9 @@ CREATE TABLE `products` (
 -- Дамп данных таблицы `products`
 --
 
-INSERT INTO `products` (`id`, `name`, `desc`, `image`, `year`, `country`, `price`, `count`, `category_id`, `created_at`, `updated_at`) VALUES
-(1, 'Test 2023', 'Desc', 'koleno.jpg', 2023, 'Russia', 200, 2, 1, '2023-05-06 03:45:35', '2023-05-09 04:24:50'),
-(2, 'Test 2020', 'Desc', 'koleno.jpg', 2020, 'Russia', 200, 2, 2, '2023-05-06 03:45:35', '2023-05-06 03:45:35');
+INSERT INTO `products` (`id`, `name`, `desc`, `image`, `year`, `country`, `model`, `price`, `count`, `category_id`, `created_at`, `updated_at`) VALUES
+(1, 'Атырка', 'Desc', 'koleno.jpg', 2023, 'Russia', 'm2024', 555, 2, 1, '2023-05-06 03:45:35', '2023-05-10 20:02:43'),
+(2, 'Якурка', 'Desc', 'koleno.jpg', 2020, 'Russia', 'm2020', 200, 2, 2, '2020-05-06 03:45:35', '2020-05-06 03:45:35');
 
 -- --------------------------------------------------------
 
@@ -184,14 +176,6 @@ CREATE TABLE `users` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Дамп данных таблицы `users`
---
-
-INSERT INTO `users` (`id`, `name`, `surname`, `patronymic`, `login`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Alexey', 'Kotov', NULL, 'AlloY', 'salman03@yandex.ru', 'zxcasdqwe', 'j4ujRObf2Kw36dMTWT4tk41TZdCEp2aCShXlJH7T5t3Ql62jgEUCWKAqf4gv', '2023-05-05 21:31:13', '2023-05-05 21:31:13'),
-(2, 'Admin', 'Adminov', 'Admin', 'admin', 'admin@gmail.com', 'admin11', 'ihgekiPF8qKPtu5T3FeWoQFZ7FJ2t6IERwtbKMSkhnxblEusGcVIbm7BDWUB', '2023-05-09 01:50:45', '2023-05-09 01:50:45');
 
 --
 -- Индексы сохранённых таблиц
@@ -256,13 +240,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT для таблицы `failed_jobs`
@@ -292,7 +276,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
