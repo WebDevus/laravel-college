@@ -56,7 +56,7 @@ class ActionsController extends Controller
             'surname' => 'required',
             'login' => 'required',
             'email' => 'required|email',
-            'password' => 'required',
+            'password' => ['required', 'min:6'],
             'password_repeat' => 'required',
             'rules' => 'required'
             ],
@@ -67,6 +67,7 @@ class ActionsController extends Controller
             'email.required' => __('translate.validation.email'),
             'email.email' => __('translate.validation.emailNotEmail'),
             'password.required' => __('translate.validation.password'),
+            'password.min' => __('translate.validation.passwordMin'),
             'password_repeat.required' => __('translate.validation.passwordRepeat'),
             'rules.required' => __('translate.validation.rules')
             ]

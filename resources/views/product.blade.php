@@ -25,6 +25,9 @@
                         <li class="prod-param-item">
                             <p>Страна производитель: {{ $product->country }}</p>
                         </li>
+                        <li class="prod-param-item">
+                            <p>Модель: {{ $product->model }}</p>
+                        </li>
                     </ul>
                 </div>
             </div>

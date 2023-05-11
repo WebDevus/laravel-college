@@ -38,6 +38,11 @@
               </div>
 
               <div class="form-outline mb-4">
+                <label class="form-label">Модель</label>
+                <input type="text" name="model" class="form-control" value="{{ $product->model }}" />
+              </div>
+
+              <div class="form-outline mb-4">
                 <label class="form-label">Цена</label>
                 <input type="text" name="price" class="form-control" value="{{ $product->price }}" />
               </div>

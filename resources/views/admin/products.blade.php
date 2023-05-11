@@ -37,6 +37,11 @@
               </div>
 
               <div class="form-outline mb-4">
+                <label class="form-label">Модель</label>
+                <input type="text" name="model" class="form-control"  />
+              </div>
+
+              <div class="form-outline mb-4">
                 <label class="form-label">Цена</label>
                 <input type="text" name="price" class="form-control"  />
               </div>

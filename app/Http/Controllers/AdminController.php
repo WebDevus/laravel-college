@@ -98,6 +98,7 @@ class AdminController extends Controller
             'desc' => 'required',
             'year' => 'required',
             'country' => 'required',
+            'model' => 'required',
             'price' => 'required',
             'count' => 'required',
             'category_id' => 'required'
@@ -107,6 +108,7 @@ class AdminController extends Controller
             'desc.required' => __('translate.products.desc'),
             'year.required' => __('translate.products.year'),
             'country.required' => __('translate.products.country'),
+            'model.required' => __('translate.products.model'),
             'price.required' => __('translate.products.price'),
             'count.required' => __('translate.products.count'),
             'category_id.required' => __('translate.products.category_id'),
@@ -124,6 +126,7 @@ class AdminController extends Controller
             'desc' => $r->desc,
             'year' => $r->year,
             'country' => $r->country,
+            'model' => $r->model,
             'price' => $r->price,
             'count' => $r->count,
             'category_id' => $r->category_id,
@@ -153,6 +156,7 @@ class AdminController extends Controller
             'desc' => 'required',
             'year' => 'required',
             'country' => 'required',
+            'model' => 'model',
             'price' => 'required',
             'count' => 'required',
             'category_id' => 'required',
@@ -163,6 +167,7 @@ class AdminController extends Controller
             'desc.required' => __('translate.products.desc'),
             'year.required' => __('translate.products.year'),
             'country.required' => __('translate.products.country'),
+            'model.required' => __('translate.products.model'),
             'price.required' => __('translate.products.price'),
             'count.required' => __('translate.products.count'),
             'category_id.required' => __('translate.products.category_id')
@@ -184,6 +189,7 @@ class AdminController extends Controller
             'image' => $imageName,
             'year' => $r->year,
             'country' => $r->country,
+            'model' => $r->model,
             'price' => $r->price,
             'count' => $r->count,
             'category_id' => $r->category_id
