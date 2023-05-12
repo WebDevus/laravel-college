@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost
--- Время создания: Май 11 2023 г., 02:06
+-- Время создания: Май 12 2023 г., 04:05
 -- Версия сервера: 8.0.28
 -- Версия PHP: 8.1.1
 
@@ -156,7 +156,9 @@ CREATE TABLE `products` (
 
 INSERT INTO `products` (`id`, `name`, `desc`, `image`, `year`, `country`, `model`, `price`, `count`, `category_id`, `created_at`, `updated_at`) VALUES
 (1, 'Атырка', 'Desc', 'koleno.jpg', 2023, 'Russia', 'm2024', 555, 2, 1, '2023-05-06 03:45:35', '2023-05-10 20:02:43'),
-(2, 'Якурка', 'Desc', 'koleno.jpg', 2020, 'Russia', 'm2020', 200, 2, 2, '2020-05-06 03:45:35', '2020-05-06 03:45:35');
+(2, 'Якурка', 'Desc', 'koleno.jpg', 2020, 'Russia', 'm2020', 200, 2, 2, '2020-05-06 03:45:35', '2020-05-06 03:45:35'),
+(4, 'Турка', 'Desc', 'koleno.jpg', 2020, 'Russia', 'm2020', 200, 2, 2, '2020-05-06 03:45:35', '2020-05-06 03:45:35'),
+(5, 'Пурка', 'Desc', 'koleno.jpg', 2020, 'Russia', 'm2020', 200, 2, 2, '2020-05-06 03:45:35', '2020-05-06 03:45:35');
 
 -- --------------------------------------------------------
 
@@ -270,7 +272,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT для таблицы `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
