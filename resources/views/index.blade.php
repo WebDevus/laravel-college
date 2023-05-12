@@ -13,5 +13,17 @@
               <img src="/assets/images/logo.png">
             </div>
         </div>
+
+        <div class="slider-cover">
+            <div class="multiple-items">
+                @foreach ($products as $item)
+                    <a href="{{ route('product', $item) }}" class="items-cor">
+                        <img src="/assets/images/products/{{ $item->image }}" alt="{{ $item->name }}">
+                        <span>{{ $item->name }}</span>
+                    </a>
+                @endforeach
+            </div>
+        </div>
+        
     </section>
 @endsection

@@ -12,7 +12,8 @@ class MainController extends Controller
 {
     public function index()
     {
-        return view('index');
+        $products = Product::where('count', '!=', 0)->take(5)->get();
+        return view('index', compact('products'));
     }
 
     public function contacts()

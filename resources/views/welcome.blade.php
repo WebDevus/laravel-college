@@ -7,7 +7,9 @@
 
     <!-- Bootstrap CSS -->
     <link href="/assets/css/bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/slick-theme.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/slick.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
     <title>Магазин Сантехники</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
   </head>
@@ -78,6 +80,7 @@
       </footer>
 
       <script src="/assets/js/jquery.js"></script>
+      <script type="text/javascript" src="/assets/js/slick.min.js"></script>
       <script src="/assets/js/main.js"></script>
     <script src="/assets/js/bootstrap.js"></script>
   </body>

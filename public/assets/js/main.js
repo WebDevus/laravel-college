@@ -59,3 +59,9 @@ $('#cartSubmitButton').click(function (e) {
         }
     });
 });
+
+$('.multiple-items').slick({
+    dots: true,
+    infinite: false,
+    slidesToShow: 2,
+});
